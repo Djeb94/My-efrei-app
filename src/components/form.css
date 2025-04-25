@@ -25,7 +25,14 @@ body{
     margin-right: 20px;
   }
   
-  input {
+  .form-container input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .form-container select {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -33,7 +40,7 @@ body{
     border-radius: 4px;
   }
   
-  button {
+  .form-container button {
     width: 10%;
     padding: 0px;
     background-color: rgb(22, 55, 103);

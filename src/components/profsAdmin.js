@@ -3,24 +3,22 @@ import "./form.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const EleveAdmin = () => {
+const ProfAdmin = () => {
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
-    classe: "",
-    moyenne: 0,
-    matiere: "",
+    matiere: ""
   });
 
-  const [eleves, setEleves] = useState([]);
-  const [cours, setCours] = useState([]);
+  const [profs, setProfs] = useState([]);
+  const [cours, setCours] = useState([]); 
 
-  const fetchEleves = async () => {
+  const fetchProfs = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/eleves");
-      if (!response.ok) throw new Error("Erreur lors de la récupération des élèves");
+      const response = await fetch("http://localhost:5000/api/profs");
+      if (!response.ok) throw new Error("Erreur lors de la récupération des profs");
       const data = await response.json();
-      setEleves(data);
+      setProfs(data);
     } catch (error) {
       console.error("Erreur :", error);
     }
@@ -38,8 +36,8 @@ const EleveAdmin = () => {
   };
 
   useEffect(() => {
-    fetchEleves();
-    fetchCours();
+    fetchProfs();
+    fetchCours(); 
   }, []);
 
   const handleChange = (e) => {
@@ -50,7 +48,7 @@ const EleveAdmin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/eleves", {
+      const response = await fetch("http://localhost:5000/api/profs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -58,8 +56,8 @@ const EleveAdmin = () => {
 
       if (response.ok) {
         await response.json();
-        setFormData({ nom: "", prenom: "", classe: "", moyenne: 0, matiere: "" });
-        fetchEleves();
+        setFormData({ nom: "", prenom: "", matiere: "" });
+        fetchProfs();
       }
     } catch (error) {
       console.error("Erreur réseau :", error);
@@ -68,12 +66,12 @@ const EleveAdmin = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/eleves/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/profs/${id}`, {
         method: "DELETE",
       });
 
       if (response.ok) {
-        fetchEleves();
+        fetchProfs();
       }
     } catch (error) {
       console.error("Erreur lors de la suppression :", error);
@@ -82,23 +80,38 @@ const EleveAdmin = () => {
 
   return (
     <div className="eleveAdminTable">
-      <h2>Liste des élèves</h2>
+      <h2>Liste des professeurs</h2>
 
       <form onSubmit={handleSubmit} className="form-container">
         <label>
-          <input placeholder="Nom" type="text" name="nom" value={formData.nom} onChange={handleChange} required />
+          <input
+            placeholder="Nom"
+            type="text"
+            name="nom"
+            value={formData.nom}
+            onChange={handleChange}
+            required
+          />
         </label>
 
         <label>
-          <input placeholder="Prénom" type="text" name="prenom" value={formData.prenom} onChange={handleChange} required />
+          <input
+            placeholder="Prénom"
+            type="text"
+            name="prenom"
+            value={formData.prenom}
+            onChange={handleChange}
+            required
+          />
         </label>
 
         <label>
-          <input placeholder="Classe" type="text" name="classe" value={formData.classe} onChange={handleChange} required />
-        </label>
-
-        <label>
-          <select name="matiere" value={formData.matiere} onChange={handleChange} required>
+          <select
+            name="matiere"
+            value={formData.matiere}
+            onChange={handleChange}
+            required
+          >
             <option value="" disabled>Matière</option>
             {[...new Set(cours.map((c) => c.matiere))].map((matiere, index) => (
               <option key={index} value={matiere}>
@@ -117,24 +130,22 @@ const EleveAdmin = () => {
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
-            <th>Classe</th>
             <th>Matière</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {eleves.map((eleve) => (
-            <tr key={eleve.id}>
-              <td>{eleve.nom.toUpperCase()}</td>
-              <td>{eleve.prenom}</td>
-              <td>{eleve.email}</td>
-              <td>{eleve.classe}</td>
-              <td>{eleve.matiere || "Non assignée"}</td>
+          {profs.map((prof) => (
+            <tr key={prof.id}>
+              <td>{prof.nom.toUpperCase()}</td>
+              <td>{prof.prenom}</td>
+              <td>{prof.email}</td>
+              <td>{prof.matiere}</td>
               <td className="actions">
                 <FontAwesomeIcon
                   icon={faTrash}
                   style={{ color: "red", cursor: "pointer" }}
-                  onClick={() => handleDelete(eleve.id)}
+                  onClick={() => handleDelete(prof.id)}
                 />
               </td>
             </tr>
@@ -145,4 +156,4 @@ const EleveAdmin = () => {
   );
 };
 
-export default EleveAdmin;
+export default ProfAdmin;

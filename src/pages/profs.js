@@ -1,9 +1,10 @@
+import ProfAdmin from "../components/profsAdmin";
 
 
 function Profs() {
   return (
     <div className="profs">
-    <h1>profs</h1>
+    <ProfAdmin/>
     </div>
   );
 }

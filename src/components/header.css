@@ -1,0 +1,58 @@
+body{
+    margin: 0px;
+}
+.nav-bar{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: white;
+    margin: 0px;
+}
+.nav-bar li a{
+    padding:  30px;
+    text-decoration: none;
+    color: grey;
+}
+.nav-bar li:hover{
+    text-decoration: underline grey;
+}
+hr{
+    margin: 0px;
+    height: 50%;
+}
+.homeAdmin div{
+    display: flex;
+    justify-content: space-between;
+    padding: 1px 40px 10px 30px;
+    text-align: center;
+    background-color: rgb(22, 55, 103);
+}
+.homeAdmin div button{
+    height: 40px;
+    margin-top: 0px;
+    padding: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 1px;
+    background-color: transparent ;
+    color: white;
+    border: 2px solid white;
+    margin-top: 20px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.homeAdmin div mark{
+    padding: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 2px;
+    background-color: transparent ;
+    color: #e6f2ffc7;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.homeAdmin img{
+    width: 120px;
+    height: 45px;
+    margin-top: 10px;
+}

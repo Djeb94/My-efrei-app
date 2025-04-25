@@ -1,7 +1,9 @@
+import PlanningEleve from "../components/planningEleve";
+
 function Planning() {
     return (
       <div className="planning">
-          <h1>Mon planning</h1>
+          <PlanningEleve/>
       </div>
     );
   }

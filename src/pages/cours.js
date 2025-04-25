@@ -1,9 +1,10 @@
+import CoursAdmin from "../components/coursAdmin";
 
 
 function Cours() {
   return (
     <div className="cours">
-    <h1>cours</h1>
+    <CoursAdmin/>
     </div>
   );
 }
